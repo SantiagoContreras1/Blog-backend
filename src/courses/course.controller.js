@@ -23,3 +23,43 @@ export const saveCourse = async (req,res) => {
         });
     }
 }
+
+export const getCourses = async (req,res) => {
+    try {
+        const query = {state:true}
+
+        const courses = await Course.find(query)
+
+        res.status(200).json({
+            message: 'Courses retrieved successfully',
+            courses
+        })
+
+
+    } catch (e) {
+        return res.status(500).json({
+            message: 'Error fetching courses',
+            error: e.message
+        })
+    }
+}
+
+export const updateCourse = async (req,res) => {
+    try {
+        const {id} = req.params
+        const {...data} = req.body
+
+        const updatedCourse = await Course.findByIdAndUpdate(id,data,{new:true})
+
+        res.status(200).json({
+            message: 'Course updated successfully',
+            updatedCourse
+        })
+        
+    } catch (e) {
+        return res.status(500).json({
+            msg: "Error updating courses",
+            error: e.message
+        })
+    }
+}
