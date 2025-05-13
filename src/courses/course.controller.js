@@ -63,3 +63,20 @@ export const updateCourse = async (req,res) => {
         })
     }
 }
+
+export const deleteCourse = async (req,res) => {
+    try {
+        const {id} = req.params
+        const deletedCourse = await Course.findByIdAndUpdate(id,{state:false},{new:true})
+
+        res.status(200).json({
+            message: 'Course deleted successfully',
+            deletedCourse
+        })
+    } catch (error) {
+        return res.status(500).json({
+            msg: "Error deleting course",
+            error: error.message
+        });
+    }
+}
