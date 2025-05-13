@@ -6,6 +6,7 @@ import { dbConnection } from "./mongo.js";
 
 import courseRoutes from "../src/courses/course.routes.js"
 import publicationRoutes from "../src/publications/publication.routes.js"
+import commentRoutes from "../src/comments/comment.routes.js"
 
 const middlewares = (app)=>{
     app.use(express.urlencoded({extended: false})) //Para los forms
@@ -18,6 +19,7 @@ const middlewares = (app)=>{
 const routes = (app) => {
     app.use('/blog/v1/courses', courseRoutes)
     app.use('/blog/v1/publications', publicationRoutes)
+    app.use('/blog/v1/comments', commentRoutes)
 }
 
 const conectarDb = async () => {

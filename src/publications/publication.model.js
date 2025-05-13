@@ -20,7 +20,11 @@ const PublicationSchema = new Schema({
         type:Date,
         default: Date.now
     },
-    comments:[],
+    comments:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+        autopopulate: true
+    }],
     state:{
         type:Boolean,
         default:true
