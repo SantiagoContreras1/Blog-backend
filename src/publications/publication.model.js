@@ -19,13 +19,27 @@ const PublicationSchema = new Schema({
     creationDate:{
         type:Date,
         default: Date.now
+    },
+    comments:[],
+    state:{
+        type:Boolean,
+        default:true
     }
 })
 
 PublicationSchema.methods.toJSON = function () {
     const {__v,_id,...publication} = this.toObject()
     publication.id = _id
+
+    // Ajustar la fecha a formato local ISO sin zona horaria
+    publication.creationDate = new Date(publication.creationDate).toLocaleString("es-GT", {
+        timeZone: "America/Guatemala"
+    })
+
+
     return publication
 }
+
+PublicationSchema.plugin(mongooseAutoPopulate)
 
 export default model("Publication", PublicationSchema)
