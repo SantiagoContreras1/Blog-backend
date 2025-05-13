@@ -13,6 +13,7 @@ export const savePublication = async (req,res) => {
         const publication = new Publication({
             title: data.title,
             description: data.description,
+            image: data.image,
             course: course._id
         })
 
