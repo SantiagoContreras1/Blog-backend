@@ -2,11 +2,14 @@ import express from "express"
 import cors from "cors"
 import helmet from "helmet";
 import morgan from "morgan";
+
+
 import { dbConnection } from "./mongo.js";
 
 import courseRoutes from "../src/courses/course.routes.js"
 import publicationRoutes from "../src/publications/publication.routes.js"
 import commentRoutes from "../src/comments/comment.routes.js"
+
 
 const middlewares = (app)=>{
     app.use(express.urlencoded({extended: false})) //Para los forms

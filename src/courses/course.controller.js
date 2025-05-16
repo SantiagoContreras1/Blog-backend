@@ -6,7 +6,8 @@ export const saveCourse = async (req,res) => {
 
         const course = new Course({
             name: data.name,
-            description: data.description
+            description: data.description,
+            image: data.image
         })
 
         await course.save()

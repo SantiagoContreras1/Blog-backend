@@ -9,6 +9,9 @@ const CourseSchema = new Schema({
         type: String,
         required: true
     },
+    image:{
+        type: String
+    },
     state:{
         type: Boolean,
         default: true
