@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import {saveComment,getComments,updateComment,deleteComment} from "./comment.controller.js";
+import {saveComment,getComments,updateComment,deleteComment, searchCommentById} from "./comment.controller.js";
 
 import { existPublication } from "../middlewares/existencias.js";
 
@@ -14,7 +14,6 @@ router.post(
 
 router.put(
     "/update/:id",
-    [existPublication],
     updateComment
 )
 
@@ -23,6 +22,11 @@ router.delete(
     deleteComment
 )
 
-router.get("/",getComments)
+router.get("/", getComments)
+
+router.get(
+    "/:id",
+    searchCommentById
+)
 
 export default router

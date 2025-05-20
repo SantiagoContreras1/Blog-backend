@@ -3,8 +3,7 @@ import mongooseAutoPopulate from "mongoose-autopopulate";
 
 const CommentSchema = new Schema({
     name:{
-        type:String,
-        required:true
+        type:String
     },
     comment:{
         type:String,

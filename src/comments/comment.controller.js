@@ -52,6 +52,30 @@ export const getComments = async (req,res) => {
     }
 }
 
+export const searchCommentById = async (req,res) => {
+    try {
+        const {id} = req.params
+
+        const comment = await Comment.findById(id)
+
+        if (!comment) {
+            return res.status(404).json({
+                message: 'Comment not found'
+            })
+        }
+
+        res.status(200).json({
+            msg: "Comment searched successfully",
+            comment
+        })
+    } catch (e) {
+        return res.status(500).json({
+            message: "Error searching comment",
+            error: e.message
+        })
+    }
+}
+
 export const updateComment = async (req,res) => {
     try {
         const {id} = req.params
